@@ -1,19 +1,33 @@
-import React from "react";
+import React,{ useState } from "react";
 
-function GifSearch({setSearch }) {
-    function handleSubmit(event) {
-        event.preventDefault()
+function GifSearch({ onSearch }) {
+    const [search, setSearch] = useState("")
+
+    function handleSubmit(e) {
+        e.preventDefault()
+        onSearch(search)
     }
 
+
     return (
+        <div>
         <form onSubmit={handleSubmit}>
+            <div className="form-group">
+                <label htmlFor="search">Enter a Search Term:</label>
             <input
+            id="search"
+            className="form-control"
             type="text"
-            placeholder="Enter search"
+            value={search}
             onChange={(e) => setSearch(e.target.value)}
             >
             </input>
+            </div>
+            <button type="submit" className="btn btn-success">
+                Find Gifs
+            </button>
         </form>
+        </div>
     )
 }
 
